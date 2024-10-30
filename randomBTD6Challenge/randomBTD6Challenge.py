@@ -21,11 +21,15 @@ def ran_hero():
         "Geraldo",
         "Corvus"
     ]
-    return choice(heroes)
+
+    ## 2/3 to get a hero, returns No hero if failed
+    if randint(1, 3) != 1:
+        return choice(heroes)
+    return "No hero"
 
 
 def ran_difficulty():
-    '''Randomizes Difficulty and Mode'''
+    """Randomizes Difficulty and Mode"""
     difficulties = [
         "Easy",
         "Medium",
@@ -159,7 +163,13 @@ def ran_towers():
 
     ## chooses each tower and randomly determines paths
     for i in towers:
-        tower_list += i + ": " + str(randint(0, 5)) + "-" + str(randint(0, 5)) + "-" + str(randint(0, 5)) + "\n"
+        ## 1/4 chance for any one tower to be included
+        if randint(1,4) == 1:
+            tower_list += i + ": " + str(randint(0, 5)) + "-" + str(randint(0, 5)) + "-" + str(randint(0, 5)) + "\n"
+
+    ## runs code again in case zero towers are rolled
+    if tower_list == "":
+        tower_list = ran_towers()
 
     return tower_list
 
